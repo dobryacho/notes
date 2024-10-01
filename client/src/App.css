@@ -1,0 +1,94 @@
+#root {
+  background-color: #ffea8f;
+  min-height: 100vh;
+}
+
+
+@keyframes colorChange {
+  0% {
+      background-color: white; /* Промежуточный цвет */
+  }
+  100% {
+      background-color: #166d1d;
+  }
+}
+
+.card {
+  background-color: #6d1616;
+  transition: background-color .5s;
+}
+.card_20 {
+background-color: #634013;
+transition: background-color .5s;
+}
+.card_40 {
+background-color: #7c6116;
+transition: background-color .5s;
+}
+.card_60 {
+background-color: #646d16;
+transition: background-color .5s;
+}
+.card_80 {
+background-color: #6b881b;
+transition: background-color .5s;
+}
+.card_99 {
+background-color: #608a1d;
+transition: background-color .5s;
+}
+
+
+
+.card_done {
+  animation: colorChange .5s forwards;
+}
+
+.note {
+  cursor: pointer;  
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #8383ce;
+  transition: background-color .2s;
+}
+
+.note:hover {
+  background-color: #7474e4;
+}
+
+/* .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
