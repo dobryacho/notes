@@ -9,20 +9,25 @@ type Props = {
 };
 
 function ListNotes({ myArr, setMyArr }: Props) {
-  
   return (
-    <>    
-        {myArr?.map((note, index) => (
-          <React.Fragment key={note.name}>
-            <Note
-              name={note.name}
-              array={note.notesArray}
-              index={index}
-              setMyArr={setMyArr}
-            />
-          </React.Fragment>
-        ))}
-    </>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-evenly",
+      }}
+    >
+      {myArr?.map((note, index) => (
+        <React.Fragment key={note.name}>
+          <Note
+            name={note.name}
+            array={note.notesArray}
+            index={index}
+            setMyArr={setMyArr}
+          />
+        </React.Fragment>
+      ))}
+    </div>
   );
 }
 

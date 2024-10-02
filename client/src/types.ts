@@ -10,4 +10,5 @@ export interface NotesArray {
   id:       number;
   name?:    string;
   toto?:    string;
+  dateCreate: string;
 }

@@ -4,7 +4,7 @@
   padding: 20px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background-color: rgb(132, 74, 199);
+  background-color: #844ac7;
 }
 
 .input {
@@ -18,10 +18,16 @@
   color: rgb(213, 181, 255)
 }
 
-.input:hover {
-  border: 1px rgb(162, 0, 255) solid;
+.input:hover:not(:disabled) {
+  border: 1px #5f0096 solid;
 }
 
 .input:focus {
   outline: unset;
+  border: 1px rgb(95, 0, 150) solid;
+}
+
+.button {
+  padding: 5px;
+  font-weight: bold;
 }

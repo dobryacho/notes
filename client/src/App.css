@@ -1,8 +1,13 @@
-#root {
-  background-color: #ffea8f;
+#root {  
+  font-family: 'Pixy'; 
+  background-color: #282828;
   min-height: 100vh;
 }
 
+@font-face {
+	font-family: 'Pixy'; 
+	src: url(./assets/ofont.ru_Pixy.ttf); 
+}
 
 @keyframes colorChange {
   0% {
@@ -13,50 +18,67 @@
   }
 }
 
+
 .card {
-  background-color: #6d1616;
-  transition: background-color .5s;
+  background-color: #6d1616;  
+  transition: background-color 1s;
 }
 .card_20 {
-background-color: #634013;
-transition: background-color .5s;
+  background-color: #634013;
+  transition: background-color 1s;
 }
 .card_40 {
-background-color: #7c6116;
-transition: background-color .5s;
+  background-color: #7c6116;
+  transition: background-color 1s;
 }
 .card_60 {
 background-color: #646d16;
-transition: background-color .5s;
+transition: background-color 1s;
 }
 .card_80 {
-background-color: #6b881b;
-transition: background-color .5s;
+  background-color: #6b881b;
+  transition: background-color 1s;
 }
 .card_99 {
-background-color: #608a1d;
-transition: background-color .5s;
+  background-color: #608a1d;
+  transition: background-color 1s;
+}
+
+select:focus {
+  outline: unset;
 }
 
 
-
+.card-default{
+  background-color: #9a98ad;
+  height: fit-content;
+  transition: background-color .5s;
+  border: 1px solid white;
+}
 .card_done {
-  animation: colorChange .5s forwards;
+  /* animation: colorChange .5s forwards; */
+  background-color: #166d1d;
 }
 
 .note {
-  cursor: pointer;  
-  margin: 10px;
+  cursor: pointer;
+  margin-top: 10px;
   padding: 10px;
-  border-radius: 10px;
-  background-color: #8383ce;
-  transition: background-color .2s;
+  border-radius: 6px;
+  background-color: #babad1;
+  transition: background-color 50ms;
 }
 
 .note:hover {
-  background-color: #7474e4;
+  background-color: #c7c7e9;
+}
+input[type='checkbox'] {
+  accent-color: #3bd16d; 
 }
 
+button {
+  cursor: pointer;
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;

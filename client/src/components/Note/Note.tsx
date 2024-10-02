@@ -26,54 +26,81 @@ function Note({ name, array, index, setMyArr }: Props) {
     // array.length
   }, [updateProc, array]);
 
-  const classWithProc = () => {
-    if (pocent === 100) {
-      return "card_done";
-    } else if (pocent >= 80 && pocent < 100) {
-      return "card_99";
-    } else if (pocent >= 60) {
-      return "card_80";
-    } else if (pocent >= 40) {
-      return "card_60";
-    } else if (pocent >= 20) {
-      return "card_40";
-    } else if (pocent > 0) {
-      return "card_20";
-    } else {
-      return "card";
-    }
+  const handleDeleteCat = () => {
+    fetch("http://localhost:3000/newpost/cat", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    }).then(() =>
+      setMyArr((prev) => prev.filter((note) => note.name !== name))
+    );
   };
 
   return (
     <div
       style={{
-        padding: "20px",
+        width: "400px",
+        padding: "10px",
         margin: "10px",
-        borderRadius: "10px",
-        display:'flex',
-        flexDirection:'column'
+        borderRadius: "6px",
+        display: "flex",
+        flexDirection: "column",
+        maxHeight: "fit-content",
       }}
-      className={classWithProc()}
+      className={"card-default" + (pocent === 100 ? " card_done" : "")}
+      // className={classWithProc() + ' card-default'}
     >
-      <h2>
-        {name}
-        {" " + pocent + "% "}
-        <input
-          type="checkbox"
-          name=""
-          id=""
-          checked={chekedCategory}
-          disabled
-        />
-      </h2>
-      <ButtonShow show={show} onClick={() => setShow((prev) => !prev)}/>
-      
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h2>
+          <input
+            type="checkbox"
+            name=""
+            id=""
+            checked={chekedCategory}
+            disabled
+          />{" "}
+          {name}
+        </h2>
+        <div
+          style={{
+            width: "50px",
+            minWidth: "50px",
+            height: "50px",
+            borderRadius: "50px",
+            border: "2px solid white",
+            alignContent: "center",
+            textAlign: "center",
+          }}
+          className={
+            pocent === 0
+              ? "card"
+              : pocent <= 20
+              ? "card_20"
+              : pocent <= 40
+              ? "card_40"
+              : pocent <= 60
+              ? "card_60"
+              : pocent <= 80
+              ? "card_80"
+              : pocent < 100
+              ? "card_99"
+              : "card_done"
+          }
+        >
+          {pocent}
+        </div>
+      </div>
+      <ButtonShow
+        handleDeleteCat={handleDeleteCat}
+        show={show}
+        onClick={() => setShow((prev) => !prev)}
+      />
       <div
         style={{
-          padding: "5px",
-          margin: "5px",
           borderRadius: "10px",
-          backgroundColor: "#6161a5",
+          // backgroundColor: "#6161a5",
           display: show ? "block" : "none",
         }}
       >

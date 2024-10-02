@@ -7,20 +7,24 @@ type Props = {
   myArr: NotesType[];
 };
 
+const initialInputs = {
+  name: "",
+  text: "",
+  comment: "",
+  check: false,
+};
+
 function Test({ setUpdateNotes, myArr }: Props) {
-  const [inputs, setInputs] = useState({
-    name: "",
-    text: "",
-    comment: "",
-    check: false,
-  });
+  const [inputs, setInputs] = useState(initialInputs);
   const [selectCat, setSelectCat] = useState(false);
+  const [select, setSelect] = useState("");
 
   const hadleInputs = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-  const handleSelect = (e) => {
+  const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelect(e.target.value);
     if (e.target.value) {
       setInputs((pre) => ({ ...pre, name: e.target.value }));
       setSelectCat(true);
@@ -42,8 +46,23 @@ function Test({ setUpdateNotes, myArr }: Props) {
         name,
         text: JSON.stringify({ text, comment, check }),
       }),
-    }).then(() => setUpdateNotes((prev) => !prev));
+    }).then(() => {
+      setUpdateNotes((prev) => !prev);
+      setSelect("");
+      setSelectCat(false);
+    });
+    setInputs(initialInputs);
   };
+
+  function calcProc() {
+    const allNotes = myArr.reduce((acc, el) => acc + el.notesArray.length, 0);
+    const notesThrutly = myArr.reduce(
+      (acc, el) => acc + el.notesArray.filter((elka) => elka.check).length,
+      0
+    );
+    const result = Math.floor((notesThrutly * 100) / allNotes);
+    return result || 0;
+  }
 
   return (
     <div className={style.form}>
@@ -77,14 +96,17 @@ function Test({ setUpdateNotes, myArr }: Props) {
             value={inputs.comment}
             className={style.input}
           />
-          <button>send</button>
+          <button className={style.button}>send</button>
+          <h1 style={{ float: "inline-end" }}>{calcProc()}%</h1>
         </form>
       </div>
       <div>
-        <select name="cat" id="" onChange={handleSelect}>
-          <option value=""></option>
+        <select name="cat" id="" onChange={handleSelect} value={select}>
+          <option value="">[новая тема]</option>
           {myArr.map((cat) => (
-            <option value={cat.name}>{cat.name}</option>
+            <option key={cat.name} value={cat.name}>
+              {cat.name}
+            </option>
           ))}
         </select>
       </div>
