@@ -12,9 +12,15 @@ function App() {
       res.json().then((res: NotesType[]) =>
         setMyArr(() => {
           const arr = res.sort((a, b) => {
+            if (a.notesArray.every((note) => note.check) && !b.notesArray.every((note) => note.check)) {
+              return 1
+            }
+            if (b.notesArray.every((note) => note.check) && !a.notesArray.every((note) => note.check)) {
+              return -1
+            }
             console.log(
-              a?.notesArray[a.notesArray.length - 1]?.dateCreate,
-              b?.notesArray[b.notesArray.length - 1]?.dateCreate
+              Number(b?.notesArray[b.notesArray.length - 1]?.dateCreate),
+              Number(a?.notesArray[a.notesArray.length - 1]?.dateCreate)
             );
 
             return (

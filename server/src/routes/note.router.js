@@ -1,6 +1,8 @@
 const noteRouter = require("express").Router();
 const fs = require("fs").promises;
 
+const pandth = '../notesDB/'
+
 async function checkFileExists(filePath) {
   try {
     await fs.access(filePath);
@@ -11,12 +13,12 @@ async function checkFileExists(filePath) {
 }
 
 async function getTable(name) {
-  return JSON.parse(await fs.readFile(`../notesDB/${name.trim()}.txt`));
+  return JSON.parse(await fs.readFile(`${pandth}${name.trim()}.txt`));
 }
 
 async function writeTable(name, data) {
   await fs.writeFile(
-    `../notesDB/${name.trim()}.txt`,
+    `${pandth}${name.trim()}.txt`,
     JSON.stringify(data),
     "utf-8"
   );
@@ -26,7 +28,7 @@ noteRouter.delete("/cat", async (req, res) => {
   console.log(" >>> ", "удаление категории", new Date());
   try {
     const { name } = req.body;
-    await fs.rm(`../notesDB/${name.trim()}.txt`);
+    await fs.rm(`${pandth}${name.trim()}.txt`);
     res.end();
   } catch (error) {
     console.log(error);
@@ -36,9 +38,9 @@ noteRouter.delete("/cat", async (req, res) => {
 noteRouter.get("/", async (req, res) => {
   console.log(" >>> ", "получение всего списка", new Date());
   try {
-    const response = await fs.readdir("../notesDB/");
+    const response = await fs.readdir(`${pandth}`);
     const arr = Promise.all(
-      response.map(async (note) => {
+      response.filter((note)=> note.includes('txt')).map(async (note) => {
         const reg = note.match(/(.*?)(\.txt)$/)[1];
         const re = { name: reg, notesArray: await getTable(reg) };
         return re;
@@ -101,7 +103,7 @@ noteRouter.post("/", async (req, res) => {
     textParse.name = name;
     textParse.dateCreate = `${year}${month}${day}${time}`;
 
-    const getFIle = await checkFileExists(`../notesDB/${name}.txt`);
+    const getFIle = await checkFileExists(`${pandth}${name}.txt`);
     if (getFIle) {
       console.log(" >>> ", "добавление задачи к категории", new Date());
       const jsonRes = await getTable(name);

@@ -54,13 +54,7 @@ function Note({ name, array, index, setMyArr }: Props) {
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>
-          <input
-            type="checkbox"
-            name=""
-            id=""
-            checked={chekedCategory}
-            disabled
-          />{" "}
+          {chekedCategory && '✅'}{" "}
           {name}
         </h2>
         <div
