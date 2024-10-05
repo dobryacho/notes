@@ -1,0 +1,33 @@
+.form {
+  margin: 10px;
+  margin-top: 0px;
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #844ac7;
+}
+
+.input {
+  border: 1px solid transparent;
+  margin: 3px;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.input::placeholder{
+  color: rgb(213, 181, 255)
+}
+
+.input:hover:not(:disabled) {
+  border: 1px #5f0096 solid;
+}
+
+.input:focus {
+  outline: unset;
+  border: 1px rgb(95, 0, 150) solid;
+}
+
+.button {
+  padding: 5px;
+  font-weight: bold;
+}

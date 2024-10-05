@@ -1,0 +1,49 @@
+.button {
+  width: 60%;
+  height: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: unset;
+  transition: background-color .1s;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #c3c1d986;
+}
+
+.button_pushed {
+  width: 60%;
+  height: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .1s;
+  font-weight: bold;
+  background-color: #87878775;
+}
+
+.button_pushed:hover {
+  background-color: #69696975;
+}
+
+.delete {
+  width: 20%;
+  height: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 1px solid rgb(136, 31, 31);
+  background-color: unset;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .5s;
+}
+
+.delete:hover {
+  background-color: rgba(136, 31, 31, 0.377);
+}
